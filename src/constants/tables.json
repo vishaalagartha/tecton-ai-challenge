@@ -1,0 +1,37 @@
+[
+  {
+    "name": "content",
+    "url": "https://s3-us-west-2.amazonaws.com/tecton.ai.public/coding_exercise_1/content.csv",
+    "row_count": 10000
+  },
+  {
+    "name": "content_display",
+    "url": "https://s3-us-west-2.amazonaws.com/tecton.ai.public/coding_exercise_1/content_display.csv",
+    "row_count": 10000
+  },
+  {
+    "name": "content_topic",
+    "url": "https://s3-us-west-2.amazonaws.com/tecton.ai.public/coding_exercise_1/content_topic.csv",
+    "row_count": 10000
+  },
+  {
+    "name": "page_view",
+    "url": "https://s3-us-west-2.amazonaws.com/tecton.ai.public/coding_exercise_1/page_view.csv",
+    "row_count": 10000
+  },
+  {
+    "name": "questions",
+    "url": "https://s3-us-west-2.amazonaws.com/tecton.ai.public/coding_exercise_1/questions.csv",
+    "row_count": 10000
+  },
+  {
+    "name": "stock_portfolio_item",
+    "url": "https://s3-us-west-2.amazonaws.com/tecton.ai.public/coding_exercise_1/stock_portfolio_item.csv",
+    "row_count": 10000
+  },
+  {
+    "name": "user",
+    "url": "https://s3-us-west-2.amazonaws.com/tecton.ai.public/coding_exercise_1/user.csv",
+    "row_count": 10000
+  }
+]
