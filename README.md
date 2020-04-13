@@ -1,3 +1,8 @@
+# Tecton AI UI Engineer Take Home Challenge
+
+This repository contains the take home challenge for Tecton AI's UI Engineer position.
+The goal of this project was to build a single page JavaScript application that allows a user to browse a collection of datasets (in the form of CSV files) and view details about each dataset.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
