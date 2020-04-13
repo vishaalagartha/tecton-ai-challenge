@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import * as d3 from 'd3';
-import datasets from 'constants/tables.json';
+import React, { Component } from 'react'
+import './App.css'
+import * as d3 from 'd3'
+import datasets from 'constants/tables.json'
+import { Container, Row, Button } from 'react-bootstrap'
 
 export default class App extends Component { 
 
@@ -10,37 +10,49 @@ export default class App extends Component {
     super(props)
     this.state = {
       datasets,
-      chosenDataset: datasets[0]
+      datasetName: ''
     }
   }
 
   componentDidMount() {
-    d3.csv(this.state.chosenDataset.url)
+    this.fetchDataset(0)
+  }
+
+  fetchDataset = i => {
+    this.setState({...this.state, datasetName: this.state.datasets[i].name})
+    d3.csv(this.state.datasets[i].url)
       .then(data => {
           console.log(data)
         }
       )
   }
-
   
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+      <Container>
+        <Row style={{marginTop: '10px'}}>
+          <h1>
+            Tecton AI Datasets
+          </h1>
+        </Row>
+        <Row style={{justifyContent: 'space-between'}}>
+          {
+            this.state.datasets.map((el, i) => {
+              console.log(el)
+              return (
+                <Button key={i} disabled={this.state.datasetName===el.name} onClick = {() => this.fetchDataset(i)}>
+                  {el.name}
+                </Button>
+              )
+            })
+          }
+        </Row>
+        <Row>
+          <h3>
+            Showing dataset: {this.state.datasetName} 
+          </h3>
+        </Row>
+      </Container>
+    )
   }
 }
