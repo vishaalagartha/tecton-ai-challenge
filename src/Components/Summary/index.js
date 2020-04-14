@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table } from 'react-bootstrap'
+import { Card, Table } from 'react-bootstrap'
 
 export default class Leaderboard extends Component { 
   
@@ -12,7 +12,6 @@ export default class Leaderboard extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(prevProps)
     if(prevProps.name!==this.props.name){
       let summary = []
       for(let i=0; i<Object.keys(this.props.data[0]).length; i++){
@@ -48,48 +47,53 @@ export default class Leaderboard extends Component {
 
   render() {
     return (
-        <div style={{marginTop: '10px'}}>
-          {this.state.fetched ?
-            <Table striped bordered hover>
-              <thead>
-                <tr>
-                  <th>Statistic</th>
-                  {
-                   this.state.summary.map((el, i) => {
-                    return (
-                      <th key={i}>{el.key}</th>
-                    )
-                   })
-                  }
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Null Count</td>
-                  {this.renderStat('nullCounts')}
-                </tr>
-                <tr>
-                  <td>Min</td>
-                  {this.renderStat('min')}
-                </tr>
-                <tr>
-                  <td>Max</td>
-                  {this.renderStat('max')}
-                </tr>
-                <tr>
-                  <td>Mean</td>
-                  {this.renderStat('mean')}
-                </tr>
-                <tr>
-                  <td>Std Dev</td>
-                  {this.renderStat('stdDev')}
-                </tr>
-              </tbody>
-            </Table>
-          :
-          null
-          }
-        </div>
+        <Card style={{margin: '10px 0px 10px 0px'}}>
+          <Card.Header>
+            Summary Statistics
+          </Card.Header>
+          <Card.Body>
+            {this.state.fetched ?
+              <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th>Statistic</th>
+                    {
+                     this.state.summary.map((el, i) => {
+                      return (
+                        <th key={i}>{el.key}</th>
+                      )
+                     })
+                    }
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Null Count</td>
+                    {this.renderStat('nullCounts')}
+                  </tr>
+                  <tr>
+                    <td>Min</td>
+                    {this.renderStat('min')}
+                  </tr>
+                  <tr>
+                    <td>Max</td>
+                    {this.renderStat('max')}
+                  </tr>
+                  <tr>
+                    <td>Mean</td>
+                    {this.renderStat('mean')}
+                  </tr>
+                  <tr>
+                    <td>Std Dev</td>
+                    {this.renderStat('stdDev')}
+                  </tr>
+                </tbody>
+              </Table>
+            :
+            null
+            }
+        </Card.Body>
+      </Card>
     )
   }
 }

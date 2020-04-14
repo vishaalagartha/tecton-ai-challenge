@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'
 import BootstrapTable from 'react-bootstrap-table-next'
+import { Card } from 'react-bootstrap'
 
 export default class Leaderboard extends Component { 
   
@@ -29,7 +30,6 @@ export default class Leaderboard extends Component {
 
 
   componentDidUpdate(prevProps) {
-    console.log(prevProps, this.props)
     if(prevProps.name!==this.props.name){
       this.renderTable()
     }
@@ -37,13 +37,18 @@ export default class Leaderboard extends Component {
 
   render() {
     return (
-        <div style={{marginTop: '10px'}}>
+      <Card style={{margin: '10px 0px 10px 0px'}}>
+        <Card.Header>
+          All Data
+        </Card.Header>
+        <Card.Body>
           {this.state.fetched ?
           <BootstrapTable bootstrap4 keyField={this.state.keyField} data={ this.state.data } columns={ this.state.columns } />
           :
           null
           }
-        </div>
+        </Card.Body>
+      </Card>
     )
   }
 }

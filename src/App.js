@@ -6,6 +6,7 @@ import { Row, Button } from 'react-bootstrap'
 import Table from 'Components/Table'
 import { RingLoader } from 'react-spinners'
 import Summary from 'Components/Summary'
+import Histogram from 'Components/Histogram'
 
 export default class App extends Component { 
 
@@ -64,13 +65,8 @@ export default class App extends Component {
                 Name: {this.state.datasetName} 
               </h1>
             </Row>
-            <h3>
-              Summary Statistics
-            </h3>
             <Summary name={this.state.datasetName} data={this.state.data} />
-            <h3>
-              All Data
-            </h3>
+            <Histogram name={this.state.datasetName} data={this.state.data} />
             <Table name={this.state.datasetName} data={this.state.data}/>
          </div>
         </div>
