@@ -67,16 +67,19 @@ export default class Histogram extends Component {
           data={[
             {type: 'histogram', x: this.state.histogramData,
              marker: {
-                color: "rgba(100, 200, 102, 0.7)",
+                color: 'rgba(100, 200, 102, 0.7)',
                 line: {
-                  color:  "rgba(100, 200, 102, 1)", 
+                  color:  'rgba(100, 200, 102, 1)', 
                   width: 1
                 } 
 
              }
             },
           ]}
-          layout={ {width: this.state.width, height: this.state.height, title: this.state.histogramTitle} }
+          layout={ 
+            {width: this.state.width, height: this.state.height, title: this.state.histogramTitle, xaxis: {title: 'Value'},  yaxis: {title: 'Count'}
+            } 
+          }
           />
         </Card.Body>
       </Card>
