@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import './App.css'
 import * as d3 from 'd3'
 import datasets from 'constants/tables.json'
-import { Container, Row, Button } from 'react-bootstrap'
+import { Row, Button } from 'react-bootstrap'
 import Table from 'Components/Table'
+import { RingLoader } from 'react-spinners'
+import Summary from 'Components/Summary'
 
 export default class App extends Component { 
 
@@ -27,12 +29,8 @@ export default class App extends Component {
             for(let k=0; k<Object.keys(data[0]).length; k++){
               const key = Object.keys(data[0])[k]
               const val = parseFloat(data[i][key])
-              if(!isNaN(val)){
-                if(data[i][key].length>3)
-                  data[i][key] = val.toFixed(3)
-                else
-                  data[i][key] = val
-              }
+              if(!isNaN(val))
+                data[i][key] = data[i][key].length>3 ? parseFloat(val.toFixed(3)) : val
             }
           }
           this.setState({...this.state, datasetName: this.state.datasets[i].name, data})
@@ -42,14 +40,13 @@ export default class App extends Component {
   
   render() {
     return (
-      <div>
-        <Container>
-          <Row style={{marginTop: '10px'}}>
+        <div style={{marginLeft: '10px', marginRight: '10px'}}>
+          <Row style={{margin: '10px 10px 10px 10px'}}>
             <h1>
-              Tecton AI Datasets
+              Available Datasets
             </h1>
           </Row>
-          <Row style={{justifyContent: 'space-between'}}>
+          <Row style={{justifyContent: 'space-between', margin: '10px 10px 10px 10px'}}>
             {
               this.state.datasets.map((el, i) => {
                 return (
@@ -60,16 +57,23 @@ export default class App extends Component {
               })
             }
           </Row>
-          <Row>
+          <hr/>
+          <div>
+            <Row style={{margin: '10px 10px 10px 10px'}}>
+              <h1>
+                Name: {this.state.datasetName} 
+              </h1>
+            </Row>
             <h3>
-              Showing dataset: {this.state.datasetName} 
+              Summary Statistics
             </h3>
-          </Row>
-        </Container>
-        <div style={{marginLeft: '10px', marginRight: '10px'}}>
-          <Table style={{marginLeft: '10px', marginRight: '10px'}} name={this.state.datasetName} data={this.state.data}/>
+            <Summary name={this.state.datasetName} data={this.state.data} />
+            <h3>
+              All Data
+            </h3>
+            <Table name={this.state.datasetName} data={this.state.data}/>
+         </div>
         </div>
-      </div>
     )
   }
 }
