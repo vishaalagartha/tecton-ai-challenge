@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { Card, DropdownButton, Dropdown } from 'react-bootstrap'
-import Plot from 'react-plotly.js';
+import Plot from 'react-plotly.js'
+import { GiHistogram } from 'react-icons/gi'
 
 export default class Histogram extends Component {
 
@@ -19,7 +20,9 @@ export default class Histogram extends Component {
       for(let i=0; i<Object.keys(this.props.data[0]).length; i++){
         const key = Object.keys(this.props.data[0])[i]
         const elements = this.props.data.map(el => el[key])
-        if(typeof(elements[0])==='number'){
+        const distinct = [...new Set(elements)]
+        if(typeof(elements[0])==='number' && distinct.length>2){
+          console.log(distinct)
           data[key] = elements
         }
       }
@@ -36,10 +39,11 @@ export default class Histogram extends Component {
     return (
       <Card style={{height: '650px', margin: '10px 0px 10px 0px'}}>
         <Card.Header>
-          Data Distribution
+          <GiHistogram style={{fontSize: '25px', marginRight: '10px'}}/>
+          Attribute Distribution
         </Card.Header>
         <Card.Body>
-          <DropdownButton title='Choose Data'>
+          <DropdownButton title='Select Attribute'>
             {
               Object.keys(this.state.data).map((el, i) => {
                 return (
@@ -50,7 +54,16 @@ export default class Histogram extends Component {
           </DropdownButton>
           <Plot
           data={[
-            {type: 'histogram', x: this.state.histogramData},
+            {type: 'histogram', x: this.state.histogramData,
+             marker: {
+                color: "rgba(100, 200, 102, 0.7)",
+                line: {
+                  color:  "rgba(100, 200, 102, 1)", 
+                  width: 1
+                } 
+
+             }
+            },
           ]}
           layout={ {width: 1300, height: 500, title: this.state.histogramTitle} }
           />

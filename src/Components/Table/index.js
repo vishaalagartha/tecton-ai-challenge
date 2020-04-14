@@ -1,7 +1,18 @@
 import React, { Component } from 'react'
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'
 import BootstrapTable from 'react-bootstrap-table-next'
+import paginationFactory from 'react-bootstrap-table2-paginator';
 import { Card } from 'react-bootstrap'
+import { FaList } from 'react-icons/fa'
+
+const rowStyle = (row, rowIndex) => {
+  console.log(rowIndex)
+    const style = {}
+    if (rowIndex%2===0)
+        style.backgroundColor = 'rgba(0,0,0,.05)'
+
+    return style
+}
 
 export default class Leaderboard extends Component { 
   
@@ -39,11 +50,12 @@ export default class Leaderboard extends Component {
     return (
       <Card style={{margin: '10px 0px 10px 0px'}}>
         <Card.Header>
+          <FaList style={{fontSize: '25px', marginRight: '10px'}}/>
           All Data
         </Card.Header>
         <Card.Body>
           {this.state.fetched ?
-          <BootstrapTable bootstrap4 keyField={this.state.keyField} data={ this.state.data } columns={ this.state.columns } />
+          <BootstrapTable bootstrap4 keyField={this.state.keyField} data={ this.state.data } columns={ this.state.columns } pagination={ paginationFactory()} rowStyle={rowStyle}/>
           :
           null
           }

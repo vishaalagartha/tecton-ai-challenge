@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Card, Table } from 'react-bootstrap'
+import { FaStar } from 'react-icons/fa'
 
 export default class Leaderboard extends Component { 
   
@@ -49,6 +50,7 @@ export default class Leaderboard extends Component {
     return (
         <Card style={{margin: '10px 0px 10px 0px'}}>
           <Card.Header>
+            <FaStar style={{fontSize: '25px', marginRight: '10px'}}/>
             Summary Statistics
           </Card.Header>
           <Card.Body>
