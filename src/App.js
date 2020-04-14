@@ -48,6 +48,7 @@ export default class App extends Component {
   render() {
     return (
         <div style={{margin: '10px 10px 100px 10px'}}>
+          {/* Give user the ability to choose the dataset via dropdown */}
           <DropdownButton id='dataset-dropdown' title='Select Dataset' style={{marginTop: '10px'}}>
             {
               this.state.datasets.map((el, i) => {
@@ -68,6 +69,7 @@ export default class App extends Component {
             <h3>
               Number of rows: {this.state.nRows}
             </h3>
+          {/* Components with more detail about the dataset */}
             <Summary name={this.state.datasetName} data={this.state.data} />
             <Histogram name={this.state.datasetName} data={this.state.data} />
             <Table name={this.state.datasetName} data={this.state.data}/>

@@ -7,22 +7,31 @@ export default class Histogram extends Component {
 
   constructor(props){
     super(props)
+    // Resize histogram based on screen size (smaller for mobile screens)
+    let width = 1300
+    let height = 500
+    if(window.innerWidth<=760){
+      width = 350
+    }
     this.state = {
       data: {},
       histogramTitle: '',
-      histogramData: []
+      histogramData: [],
+      width,
+      height
     }
   }
 
   componentDidUpdate(prevProps) {
     if(prevProps.name!==this.props.name){
+      // Ensure that data is numerical since categorical data should not be
+      // added to the histogram
       let data = {}
       for(let i=0; i<Object.keys(this.props.data[0]).length; i++){
         const key = Object.keys(this.props.data[0])[i]
         const elements = this.props.data.map(el => el[key])
         const distinct = [...new Set(elements)]
         if(typeof(elements[0])==='number' && distinct.length>2){
-          console.log(distinct)
           data[key] = elements
         }
       }
@@ -31,6 +40,7 @@ export default class Histogram extends Component {
     }
   }
 
+  // Resets the histogram's data
   setHistogramData = el => {
     this.setState({...this.state, histogramTitle: el, histogramData: this.state.data[el]})
   }
@@ -43,6 +53,7 @@ export default class Histogram extends Component {
           Attribute Distribution
         </Card.Header>
         <Card.Body>
+          {/* Allow user to select attribute to show histogram for via dropdown */ }
           <DropdownButton title='Select Attribute'>
             {
               Object.keys(this.state.data).map((el, i) => {
@@ -65,7 +76,7 @@ export default class Histogram extends Component {
              }
             },
           ]}
-          layout={ {width: 1300, height: 500, title: this.state.histogramTitle} }
+          layout={ {width: this.state.width, height: this.state.height, title: this.state.histogramTitle} }
           />
         </Card.Body>
       </Card>

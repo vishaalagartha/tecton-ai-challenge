@@ -5,12 +5,11 @@ import paginationFactory from 'react-bootstrap-table2-paginator';
 import { Card } from 'react-bootstrap'
 import { FaList } from 'react-icons/fa'
 
+// Custom row style for even rows
 const rowStyle = (row, rowIndex) => {
-  console.log(rowIndex)
     const style = {}
     if (rowIndex%2===0)
-        style.backgroundColor = 'rgba(0,0,0,.05)'
-
+      style.backgroundColor = 'rgba(0,0,0,.05)'
     return style
 }
 
@@ -27,6 +26,7 @@ export default class Leaderboard extends Component {
   }
 
   renderTable = () => {
+    // Custom columns with sorting functionality
     let columns = Object.keys(this.props.data[0]).map(el => {
       return {
         dataField: el,

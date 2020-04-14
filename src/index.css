@@ -7,6 +7,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.table {
+  font-size: calc(1vw);
+}
+
+@media screen and (max-width: 600px) {
+  .table {
+    overflow: auto;
+    display: block;
+    table-layout: auto;
+  }
+}
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

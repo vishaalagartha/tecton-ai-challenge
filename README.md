@@ -5,6 +5,12 @@ The goal of this project was to build a single page JavaScript application that 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Directory Structure
+All front end code is inside the `src` directory.
+The main application is written in `src/App.js`. This file calls multiple other components including the Summary, Histogram, and Table all located inside `src/Components`.
+
+Additionally, the datasets meta data is located inside `constants/tables.json`.
+
 ## Available Scripts
 
 In the project directory, you can run:
