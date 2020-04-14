@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import * as d3 from 'd3'
 import datasets from 'constants/tables.json'
-import { Row, Button } from 'react-bootstrap'
+import { Row, DropdownButton, Dropdown, Button } from 'react-bootstrap'
 import Table from 'Components/Table'
 import { RingLoader } from 'react-spinners'
 import Summary from 'Components/Summary'
@@ -41,28 +41,22 @@ export default class App extends Component {
   
   render() {
     return (
-        <div style={{marginLeft: '10px', marginRight: '10px'}}>
-          <Row style={{margin: '10px 10px 10px 10px'}}>
-            <h1>
-              Available Datasets
-            </h1>
-          </Row>
-          <Row style={{justifyContent: 'space-between', margin: '10px 10px 10px 10px'}}>
+        <div style={{margin: '10px 10px 10px 10px'}}>
+          <DropdownButton id='dataset-dropdown' title='Select Dataset' style={{marginTop: '10px'}}>
             {
               this.state.datasets.map((el, i) => {
-                return (
-                  <Button key={i} disabled={this.state.datasetName===el.name} onClick = {() => this.fetchDataset(i)}>
-                    {el.name}
-                  </Button>
-                )
-              })
+               return (
+                <Dropdown.Item key={i} onClick={() => this.fetchDataset(i)}>{el.name}</Dropdown.Item>
+               )
+
+             })
             }
-          </Row>
+          </DropdownButton>
           <hr/>
           <div>
-            <Row style={{margin: '10px 10px 10px 10px'}}>
+            <Row style={{justifyContent: 'space-around'}}>
               <h1>
-                Name: {this.state.datasetName} 
+                {this.state.datasetName} 
               </h1>
             </Row>
             <Summary name={this.state.datasetName} data={this.state.data} />

@@ -20,8 +20,8 @@ export default class Leaderboard extends Component {
         if(typeof(elements[0])==='number'){
           const min = Math.min.apply(null, elements)
           const max = Math.max.apply(null, elements)
-          const mean = elements.reduce((a, b) => a + b) / elements.length
-          const stdDev = Math.sqrt(elements.map(x => Math.pow(x-mean,2)).reduce((a,b) => a+b)/elements.length)
+          const mean = (elements.reduce((a, b) => a + b) / elements.length).toFixed(3)
+          const stdDev = Math.sqrt(elements.map(x => Math.pow(x-mean,2)).reduce((a,b) => a+b)/elements.length).toFixed(3)
           const nullCounts = elements.filter(el => el===null).length
           summary.push({key, min, max, mean, stdDev, nullCounts})
         }
