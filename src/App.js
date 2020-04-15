@@ -47,7 +47,7 @@ export default class App extends Component {
   
   render() {
     return (
-        <div style={{margin: '10px 10px 100px 10px'}}>
+        <div style={{width: '80%', margin: '0 auto'}}>
           {/* Give user the ability to choose the dataset via dropdown */}
           <DropdownButton id='dataset-dropdown' title='Select Dataset' style={{marginTop: '10px'}}>
             {
@@ -62,13 +62,13 @@ export default class App extends Component {
           <hr/>
           <div>
             <Row style={{justifyContent: 'space-around'}}>
-              <h1>
+              <h3>
                 Dataset: {this.state.datasetName} 
-              </h1>
+              </h3>
             </Row>
-            <h3>
+            <h5>
               Number of rows: {this.state.nRows}
-            </h3>
+            </h5>
           {/* Components with more detail about the dataset */}
             <Summary name={this.state.datasetName} data={this.state.data} />
             <Histogram name={this.state.datasetName} data={this.state.data} />

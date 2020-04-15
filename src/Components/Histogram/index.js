@@ -8,10 +8,10 @@ export default class Histogram extends Component {
   constructor(props){
     super(props)
     // Resize histogram based on screen size (smaller for mobile screens)
-    let width = 1300
+    let width = 1100
     let height = 500
     if(window.innerWidth<=760){
-      width = 350
+      width = 260
     }
     this.state = {
       data: {},

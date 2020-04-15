@@ -8,7 +8,7 @@ body {
 }
 
 .table {
-  font-size: calc(1vw);
+  font-size: calc(0.8vw);
 }
 
 @media screen and (max-width: 600px) {
@@ -16,9 +16,9 @@ body {
     overflow: auto;
     display: block;
     table-layout: auto;
+    font-size: calc(1vw);
   }
 }
-
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
